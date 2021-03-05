@@ -1,0 +1,19 @@
+{
+  "name": "curso-cypress",
+  "version": "1.0.0",
+  "description": "Projeto para prática deliberada de estudos em testes com cypress.",
+  "main": "index.js",
+  "scripts": {
+    "cypress:open": "cypress open"
+  },
+  "keywords": [
+    "js",
+    "Testes",
+    "cypress"
+  ],
+  "author": "Paulo Ricardo G. dos Santos",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^6.5.0"
+  }
+}
