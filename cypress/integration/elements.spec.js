@@ -71,11 +71,11 @@ describe('Work with basic elements', () => {
     it('RadioButton', () => {
         cy.get("[name='formSexo']")
             .should('have.length', 2)
-        
+
         cy.get('#formSexoFem')
             .click()
             .should('be.checked')
-            
+
         cy.get('#formSexoMasc')
             .should('not.be.checked')
     })
@@ -87,15 +87,17 @@ describe('Work with basic elements', () => {
         //    .should('be.checked')
 
         cy.get("[name='formComidaFavorita']")
-            .should('have.length', 4)    
-            .click({ multiple: true })            
+            .should('have.length', 4)
+            .click({
+                multiple: true
+            })
     })
 
     it('ComboBox', () => {
         // Para selecionar a opção do combo
         // o cypress aceita o value ou o texto visivel
         // Porem para validar, aceita somente o valor do atributo 'value'
-        
+
         cy.get('[data-test=dataEscolaridade]')
             .select('2o grau completo')
             .should('have.value', '2graucomp')
@@ -104,14 +106,36 @@ describe('Work with basic elements', () => {
             .select('1graucomp')
             .should('have.value', '1graucomp')
 
-        // TODO validar opções do combo
+        cy.get('[data-test=dataEscolaridade] option')
+            .as('comboEscolaridadeOptions')
+
+        cy.get('@comboEscolaridadeOptions')
+            .should('have.length', 8)
+
+        cy.get('@comboEscolaridadeOptions').then($arr => {
+            const values = [];
+
+            $arr.each(function () {
+                values.push(this.innerHTML);
+            })
+
+            expect(values).to.include.members([
+                "Superior",
+                "Mestrado"
+            ])
+        })
     })
 
     it.only('Combo Multiplo', () => {
         // No caso do multiplo não funciona o valor visivel em tela (text)
         // somente o value
-        cy.get('[data-testid=dataEsportes]')
+        cy.get('[data-testid=dataEsportes]').as('comboMultEsportes')
+        cy.get('@comboMultEsportes')
             .select(["natacao", "Corrida", "nada"])
-        // TODO validar opções selecionadas do combo multiplo 
+        cy.get('@comboMultEsportes')
+            .then($el => {
+                expect($el.val()).to.be.deep.equal(["natacao", "Corrida", "nada"])
+                expect($el.val()).to.have.length(3)
+            })
     })
 })
