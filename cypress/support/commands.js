@@ -23,3 +23,14 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+/**
+ * Comando para redefinimos a prioridade dos seletores, ou seja, a sequeência em que o cypress vai
+ * dar preferência na hora de retornar o seletor na ferramenta. 
+ * 
+ * @see https://docs.cypress.io/guides/core-concepts/test-runner#Keyboard-Shortcuts
+ * @see https://docs.cypress.io/api/cypress-api/selector-playground-api#Arguments
+ */
+Cypress.SelectorPlayground.defaults({
+  selectorPriority: ['data-wc', 'id', 'class', 'attributes', 'tag', 'data-cy', 'data-test', 'data-testid', 'nth-child'],
+})
