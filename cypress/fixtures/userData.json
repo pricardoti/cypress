@@ -1,0 +1,11 @@
+{
+  "nome": "Usuário Test",
+  "sobrenome": "Sobrenome test",
+  "sexo": "M",
+  "comidas": [
+    "pizza",
+    "carne"
+  ],
+  "escolaridade": "Superior",
+  "esporte": "Karate"
+}

@@ -11,13 +11,18 @@ context('Alerts', () => {
         cy.reload()
     })
 
-    it('Alert', () => {
-        cy.get('#alert').click()
+    it.only('Alert', () => {
+        /**
+         * Comando customiazdo adicionado no arquivo de commands.
+         * 'on' trabalha com eventos do window
+         */
 
-        // 'on' trabalha com eventos do window
-        cy.on('window:alert', msg => {
-            expect(msg).to.be.equal('Alert Simples')
-        })
+        // cy.get('#alert').click()
+        // cy.on('window:alert', msg => {
+        //     expect(msg).to.be.equal('Alert Simples')
+        // })
+
+        cy.clickAlert('#alert', 'Alert Simples')
     })
 
     it('Alert with mock', () => {
@@ -51,7 +56,7 @@ context('Alerts', () => {
         cy.get('#confirm').click()
     })
 
-    it.only('Prompt Success', () => {
+    it('Prompt Success', () => {
         // see https://docs.cypress.io/api/commands/stub#Method
         cy.window().then(win => {
             cy.stub(win, 'prompt').returns('42')
@@ -65,7 +70,7 @@ context('Alerts', () => {
         cy.get('#prompt').click()
     })
 
-    it.only('Prompt Cancel', () => {
+    it('Prompt Cancel', () => {
         cy.window().then(win => {
             cy.stub(win, 'prompt')
         })
