@@ -32,7 +32,7 @@
  * @see https://docs.cypress.io/api/cypress-api/selector-playground-api#Arguments
  */
 Cypress.SelectorPlayground.defaults({
-  selectorPriority: ['data-wc', 'id', 'class', 'attributes', 'tag', 'data-cy', 'data-test', 'data-testid', 'nth-child'],
+  selectorPriority: ['data-cy', 'data-test', 'data-testid', 'data-wc', 'id', 'class', 'attributes', 'tag', 'nth-child'],
 })
 
 Cypress.Commands.add('clickAlert', (locator, mensagem) => {
