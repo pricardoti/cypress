@@ -1,58 +1,54 @@
 /// <reference types="cypress" />
 
+import '../../support/applicationCommands'
+import '../../support/accountCommands'
+
+import locators from '../../support/locators';
+
 describe('Should test at a functional level', () => {
   before(() => {
-    cy.visit('http://barrigareact.wcaquino.me/');
+    cy.visit('http://barrigareact.wcaquino.me/')
+    cy.login('pricardo.ti@gmail.com', 'abc123') // TODO: adicionar fixture
+    cy.clearAccount()
   })
 
-  it('Login success', () => {
-    // TODO: adicionar fixture
-    cy.get('.input-group > .form-control').type('pricardo.ti@gmail.com');
-    cy.get(':nth-child(2) > .form-control').type('abc123')
-
-    cy.get('.btn.btn-block.btn-primary').click()
-    cy.get('.toast-message').should('exist')
-    cy.get('.toast-message')
-      .should('exist')
-      .should('have.text', 'Bem vindo, Paulo Ricardo!')
+  beforeEach(() => {
+    cy.get('[data-test=menu-home]').click()
+    cy.clearAccount()
   })
 
   it('Should create an account', () => {
     // Acessando a pagina de contas
     // given
-    cy.get('[data-test=menu-settings]').click()
-    cy.get('[href="/reset"]').click()
-
-    cy.get('[data-test=menu-settings]').click()
-    cy.get('[href="/contas"]').click()
+    cy.accessAccount()
 
     // Preenchimento das informações
     // when
-    cy.get('[data-test=nome]').type('Conta de teste')
-    cy.get('.btn.btn-primary.btn-block').click()
+    cy.saveAccount('Conta de teste')
 
     // validações
     // then
-    cy.get('.toast-success')
-      .should('exist')
-      .should('contain', 'Conta inserida com sucesso!')
-    cy.xpath('//table//td[contains(., "Conta de teste")]')
+    cy.validMessage('Conta inserida com sucesso!')
+    cy.xpath(locators.ACCOUNT.XPATH_ROW_SAVE)
   })
 
   it('Should update an account', () => {
-    cy.xpath("//table//td[contains(., 'Conta de teste')]/..//i[@class='far fa-edit']")
+    cy.accessAccount()
+    cy.xpath("//table//td[contains(., 'Conta para alterar')]/..//i[@class='far fa-edit']")
       .click()
 
-    cy.get('[data-test=nome]')
-      .clear()
-    cy.get('[data-test=nome]')
-      .type('Conta de teste atualizada')
-    cy.get('.btn.btn-primary.btn-block').click()
+      cy.saveAccount(' atualizada')
+    cy.validMessage('Conta atualizada com sucesso!')
 
-    cy.get('.toast-success')
-      .should('exist')
-      .should('contain', 'Conta atualizada com sucesso!')
-    cy.xpath("//table//td[contains(., 'Conta de teste atualizada')]")
+    cy.xpath("//table//td[contains(., 'Conta para alterar atualizada')]")
+  })
+
+  it('Should not create an account with same name', () => {
+    cy.accessAccount()
+    cy.get(locators.ACCOUNT.NAME)
+      .clear()
+    cy.saveAccount('Conta mesmo nome')
+    cy.validMessage('Request failed with status code 400')
   })
 
 })

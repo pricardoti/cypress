@@ -12,4 +12,11 @@
 5. Cálculo de Saida
 6. Remover Movimentação
 
+### Itens abordados
+
+- Boas praticas (locators)
+- Commands (segmentação)
+- Massa de testes (gerenciamento)
+- reuso
+
 *Obs.: estes são os cenários sugeridos pelo curso, mas pode ficar a critério para executar mais cenários.*

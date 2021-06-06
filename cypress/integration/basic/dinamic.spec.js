@@ -9,7 +9,6 @@ describe('Dinamic tests', () => {
     cy.reload()
   })
 
-
   const foods = ["Carne", "Frango", "Pizza", "Vegetariano"]
   foods.forEach(food => {
     it(`Cadastro com comida variada: ${food}`, () => {

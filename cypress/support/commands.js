@@ -31,6 +31,8 @@
  * @see https://docs.cypress.io/guides/core-concepts/test-runner#Keyboard-Shortcuts
  * @see https://docs.cypress.io/api/cypress-api/selector-playground-api#Arguments
  */
+import locators from '../support/locators';
+
 Cypress.SelectorPlayground.defaults({
   selectorPriority: ['data-cy', 'data-test', 'data-testid', 'data-wc', 'id', 'class', 'attributes', 'tag', 'nth-child'],
 })
