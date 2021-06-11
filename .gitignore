@@ -1,4 +1,7 @@
 ./cypress/integration/examples/
 ./node_modules/
-package-lock.json
 node_modules/
+screenshots/
+videos/
+package-lock.json
+

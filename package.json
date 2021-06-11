@@ -4,7 +4,8 @@
   "description": "Projeto para prática deliberada de estudos em testes com cypress.",
   "main": "index.js",
   "scripts": {
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "keywords": [
     "js",

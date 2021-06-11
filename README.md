@@ -21,3 +21,9 @@ Será aberta a janela de uma aplicação e será criado alguns testes de exemplo
 2. Mocha (https://mochajs.org/)
 - Describe/It
 - Assertivas
+
+**Executando Projeto:**
+
+Interface Gráfica: ``npm run cypress:open``
+
+Linha de comando: ``npm run cypress:run``

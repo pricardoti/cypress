@@ -31,15 +31,13 @@
  * @see https://docs.cypress.io/guides/core-concepts/test-runner#Keyboard-Shortcuts
  * @see https://docs.cypress.io/api/cypress-api/selector-playground-api#Arguments
  */
-import locators from '../support/locators';
-
 Cypress.SelectorPlayground.defaults({
   selectorPriority: ['data-cy', 'data-test', 'data-testid', 'data-wc', 'id', 'class', 'attributes', 'tag', 'nth-child'],
 })
 
-Cypress.Commands.add('clickAlert', (locator, mensagem) => {
+Cypress.Commands.add('clickAlert', (locator, message) => {
   cy.get(locator).click()
   cy.on('window:alert', msg => {
-    expect(msg).to.be.equal(mensagem)
+    expect(msg).to.be.equal(message)
   })
 })
